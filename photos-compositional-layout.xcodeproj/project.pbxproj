@@ -22,6 +22,7 @@
 		07B0A10129C33587001CEBAE /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B0A10029C33587001CEBAE /* PhotoAlbum.swift */; };
 		07B0A10329C33599001CEBAE /* HeadersDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B0A10229C33599001CEBAE /* HeadersDescription.swift */; };
 		07B0A10529C336E3001CEBAE /* AlbumHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B0A10429C336E3001CEBAE /* AlbumHeaderReusableView.swift */; };
+		07B0A10729C33A7A001CEBAE /* SharedAlbumsSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B0A10629C33A7A001CEBAE /* SharedAlbumsSectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		07B0A10029C33587001CEBAE /* PhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		07B0A10229C33599001CEBAE /* HeadersDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadersDescription.swift; sourceTree = "<group>"; };
 		07B0A10429C336E3001CEBAE /* AlbumHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumHeaderReusableView.swift; sourceTree = "<group>"; };
+		07B0A10629C33A7A001CEBAE /* SharedAlbumsSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAlbumsSectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			children = (
 				07B0A0FB29C3349C001CEBAE /* MyAlbumsSectionCell.swift */,
 				07B0A10429C336E3001CEBAE /* AlbumHeaderReusableView.swift */,
+				07B0A10629C33A7A001CEBAE /* SharedAlbumsSectionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B0A10729C33A7A001CEBAE /* SharedAlbumsSectionCell.swift in Sources */,
 				07B0A0FF29C3356F001CEBAE /* PhotosSections.swift in Sources */,
 				07B0A0F529C333E5001CEBAE /* ForYouController.swift in Sources */,
 				07B0A0DC29C32F54001CEBAE /* TabBarController.swift in Sources */,
