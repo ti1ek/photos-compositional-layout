@@ -46,7 +46,7 @@ extension PhotosSections {
                                     PhotoAlbum(title: "Live Photos", image: "livephoto"),
                                     PhotoAlbum(title: "Portrait", image: "cube"),
                                     PhotoAlbum(title: "Panoramas", image: "pano"),
-                                    PhotoAlbum(title: "Taim-lapse", image: "timelapse"),
+                                    PhotoAlbum(title: "Time-lapse", image: "timelapse"),
                                     PhotoAlbum(title: "Bursts", image: "square.3.layers.3d.down.right")]),
         
         PhotosSections(type: .tableSection,
