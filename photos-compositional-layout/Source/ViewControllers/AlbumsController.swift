@@ -16,6 +16,7 @@ class AlbumsController: UIViewController {
         collection.register(AlbumHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: AlbumHeaderReusableView.identifier)
         collection.register(MyAlbumsSectionCell.self, forCellWithReuseIdentifier: MyAlbumsSectionCell.identifier)
+        collection.register(SharedAlbumsSectionCell.self, forCellWithReuseIdentifier: SharedAlbumsSectionCell.identifier)
         return collection
     }()
     
@@ -208,7 +209,12 @@ extension AlbumsController: UICollectionViewDataSource, UICollectionViewDelegate
             cell.numberTitle.text = String(Int.random(in: 25...90))
             return cell
         case .sharedAlbomsSection:
-            return MyAlbumsSectionCell()
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SharedAlbumsSectionCell.identifier, for: indexPath) as? SharedAlbumsSectionCell
+            guard let cell = cell else { return UICollectionViewCell()}
+            let albumModel = photosSection.photoAlbom[indexPath.item]
+            cell.configureAlbumTitle(albumModel.title)
+            cell.configureImage(albumModel.image)
+            return cell
         case .tableSection:
             return MyAlbumsSectionCell()
         }
