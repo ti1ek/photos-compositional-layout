@@ -74,7 +74,6 @@ class AlbumHeaderReusableView: UICollectionReusableView {
     
     // MARK: - Configuration
     
-    
     func configureTitle(_ title: String?) {
         self.title.text = title
     }

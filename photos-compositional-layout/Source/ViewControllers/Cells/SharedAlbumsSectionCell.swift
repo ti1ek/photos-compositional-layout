@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import SnapKit
 
 class SharedAlbumsSectionCell: UICollectionViewCell {
     
-    static let identifier = "SharedAlbomsSectionCell"
+    static let identifier = "SharedAlbumsSectionCell"
     
     // MARK: - Outlets
     
@@ -29,7 +30,7 @@ class SharedAlbumsSectionCell: UICollectionViewCell {
     
     private lazy var fromWho: UILabel = {
         let fromWho = UILabel()
-        fromWho.text = "От Вас"
+        fromWho.text = "Created by You"
         fromWho.textColor = .gray
         return fromWho
     }()
@@ -92,4 +93,3 @@ class SharedAlbumsSectionCell: UICollectionViewCell {
         imageView.image = nil
     }
 }
-

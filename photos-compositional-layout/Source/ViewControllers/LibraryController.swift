@@ -14,4 +14,3 @@ class LibraryController: UIViewController {
         view.backgroundColor = .white
     }
 }
-

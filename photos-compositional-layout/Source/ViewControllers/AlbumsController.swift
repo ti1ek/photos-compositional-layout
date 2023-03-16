@@ -11,30 +11,34 @@ class AlbumsController: UIViewController {
     
     private var model: [PhotosSections]?
     
+    // MARK: - Outlets
+    
     lazy var photoCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collection.register(AlbumHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: AlbumHeaderReusableView.identifier)
         collection.register(MyAlbumsSectionCell.self, forCellWithReuseIdentifier: MyAlbumsSectionCell.identifier)
         collection.register(SharedAlbumsSectionCell.self, forCellWithReuseIdentifier: SharedAlbumsSectionCell.identifier)
+        collection.register(TableSectionCell.self, forCellWithReuseIdentifier: TableSectionCell.identifier)
         return collection
     }()
     
-//    private var albumsView: AlbumsView? {
-//        guard isViewLoaded else { return nil }
-//        return view as? AlbumsView
-//    }
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         setupHierarchy()
         setupLayout()
         
-        
         model = PhotosSections.albumSections
+        
         setupNavigationBar()
         setupCollection()
     }
+    
+    
+    // MARK: - Setups
     
     private func setupHierarchy() {
         view.addSubview(photoCollection)
@@ -102,6 +106,7 @@ class AlbumsController: UIViewController {
                     widthDimension: .fractionalWidth(1/2.15),
                     heightDimension: .absolute(250)
                 )
+                
                 let layoutGroup = NSCollectionLayoutGroup.horizontal(
                     layoutSize: groupSize,
                     subitems: [layoutItem]
@@ -113,15 +118,18 @@ class AlbumsController: UIViewController {
                                                                       leading: 10,
                                                                       bottom: 20,
                                                                       trailing: 10)
+                
                 let layoutSectionHeaderSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.98),
                     heightDimension: .estimated(40)
                 )
+                
                 let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: layoutSectionHeaderSize,
                     elementKind: UICollectionView.elementKindSectionHeader,
                     alignment: .top
                 )
+                
                 layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
                 return layoutSection
             default:
@@ -171,6 +179,8 @@ class AlbumsController: UIViewController {
     }
 }
 
+// MARK: - Extensions
+
 extension AlbumsController {
     private func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
@@ -193,30 +203,41 @@ extension AlbumsController: UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model?[section].photoAlbom.count ?? 0
+        return model?[section].photoAlbum.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let photosSection = model?[indexPath.section] else { return UICollectionViewCell() }
         
         switch photosSection.type {
-        case .myAlbomsSection:
+        case .myAlbumsSection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbumsSectionCell.identifier, for: indexPath) as? MyAlbumsSectionCell
             guard let cell = cell else { return UICollectionViewCell()}
-            let albumModel = photosSection.photoAlbom[indexPath.item]
+            let albumModel = photosSection.photoAlbum[indexPath.item]
             cell.configureAlbumTitle(albumModel.title)
             cell.configureImage(albumModel.image)
             cell.numberTitle.text = String(Int.random(in: 25...90))
             return cell
-        case .sharedAlbomsSection:
+        case .sharedAlbumsSection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SharedAlbumsSectionCell.identifier, for: indexPath) as? SharedAlbumsSectionCell
             guard let cell = cell else { return UICollectionViewCell()}
-            let albumModel = photosSection.photoAlbom[indexPath.item]
+            let albumModel = photosSection.photoAlbum[indexPath.item]
             cell.configureAlbumTitle(albumModel.title)
             cell.configureImage(albumModel.image)
             return cell
         case .tableSection:
-            return MyAlbumsSectionCell()
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TableSectionCell.identifier, for: indexPath) as? TableSectionCell
+            guard let cell = cell else { return UICollectionViewCell()}
+            let albumModel = photosSection.photoAlbum[indexPath.item]
+            cell.configureIcon(albumModel.image)
+            cell.configureTitle(albumModel.title)
+            cell.numberTitle.text = String(Int.random(in: 80...120))
+            if (indexPath.section == 2 && indexPath.item == 6) || (indexPath.section == 3 && indexPath.item == 2) {
+                cell.bottomView.backgroundColor = UIColor.clear
+            } else {
+                cell.bottomView.backgroundColor = UIColor.systemGray5
+            }
+            return cell
         }
     }
     
@@ -231,7 +252,6 @@ extension AlbumsController: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        print("Нажата ячейка - \(model?[indexPath.section].photoAlbom[indexPath.item].title ?? "")")
+        print("Button Pressed - \(model?[indexPath.section].photoAlbum[indexPath.item].title ?? "")")
     }
 }
-
