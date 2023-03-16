@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +54,4 @@ class TabBarController: UITabBarController {
         rootViewController.navigationItem.title = title
         return navController
     }
-    
 }
-

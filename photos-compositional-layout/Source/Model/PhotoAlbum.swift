@@ -11,4 +11,3 @@ struct PhotoAlbum {
     var title: String
     var image: String
 }
-
